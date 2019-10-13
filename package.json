@@ -4,7 +4,8 @@
   "description": "A Node.js app using PostgreSQL",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "start:mon": "nodemon app"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/belachkar/recipe-book#readme",
   "dependencies": {
     "consolidate": "^0.15.1",
+    "dotenv": "^8.1.0",
     "dust": "^0.3.0",
     "dustjs-helpers": "^1.7.4",
     "dustjs-linkedin": "^2.7.5",
