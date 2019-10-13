@@ -1,0 +1,33 @@
+{
+  "name": "recipe-book",
+  "version": "0.0.1",
+  "description": "A Node.js app using PostgreSQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belachkar/recipe-book.git"
+  },
+  "keywords": [
+    "Node.js",
+    "PostgreSQL",
+    "recipes",
+    "book"
+  ],
+  "author": "Belachkar Ali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belachkar/recipe-book/issues"
+  },
+  "homepage": "https://github.com/belachkar/recipe-book#readme",
+  "dependencies": {
+    "consolidate": "^0.15.1",
+    "dust": "^0.3.0",
+    "dustjs-helpers": "^1.7.4",
+    "dustjs-linkedin": "^2.7.5",
+    "express": "^4.17.1",
+    "pg": "^7.12.1"
+  }
+}
