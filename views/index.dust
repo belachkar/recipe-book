@@ -1,5 +1,13 @@
 {>"layout" /}
 
 {<body}
-  THIS IS INDEX
+  {#recipes}
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{name} <button class="btn btn-primary float-right">View</button> </h4>
+          <!-- <h6 class="card-subtitle text-muted mt-2 mb-2">{ingredients}</h6>
+          <p class="card-text">{directions}</p> -->
+        </div>
+      </div>
+  {/recipes}
 {/body}
