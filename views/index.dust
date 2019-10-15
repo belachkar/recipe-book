@@ -1,13 +1,88 @@
 {>"layout" /}
-
+{<toast}
+  <!-- Toast -->
+  <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;"> -->
+  <div class="toast" style="position: absolute; top: 10px; left: 20px;">
+    <div class="toast-body">
+      {#message}
+        {message}
+        <script>
+          $('.toast').toast({ delay: 3000 });
+          $('.toast').toast('show');
+        </script>
+      {/message}
+    </div>
+  </div>
+  <!-- </div> -->
+{/toast}
 {<body}
+  {#errors}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      {error}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {/errors}
+  <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#formModal">Add Recipe</button>
   {#recipes}
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">{name} <button class="btn btn-primary float-right">View</button> </h4>
-          <!-- <h6 class="card-subtitle text-muted mt-2 mb-2">{ingredients}</h6>
-          <p class="card-text">{directions}</p> -->
+    <div class="card mb-2">
+      <div class="card-body">
+        <h5 class="card-title">{name}          
+          <button 
+            class="btn float-right"
+            type="button"
+            data-toggle="collapse"
+            data-target="#recipe_{id}"
+            aria-expanded="false"
+            aria-controls="recipe_{id}">
+            <i class="material-icons">arrow_drop_down</i>
+          </button>
+        </h5>
+        <div class="collapse card-text" id="recipe_{id}">
+          <div class="mt-5"><strong>Ingredients: </strong>{ingredients}</div>
+          <div class="mt-3"><strong>Directions: </strong>{directions}</div>
+          <hr>
+          <div class="float-right">
+            <button class="btn btn-success edit-recipe" data-id="{id}"><i class="material-icons">edit</i></button>
+            <button class="btn btn-danger delete-recipe ml-3" data-id="{id}"><i class="material-icons">delete</i></button>
+          </div>
         </div>
       </div>
+    </div>
   {/recipes}
+  <!-- Add Recipe Form Modal -->
+  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="/add" method="POST">
+          <div class="modal-header">
+            <h5 class="modal-title" id="recipeModalLabel">Add Recipe</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title"></label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{#tmpFields}{title}{/tmpFields}">
+            </div>
+            <div class="form-group">
+              <label for="ingredients"></label>
+              <textarea class="form-control" id="ingredients" name="ingredients" rows="3">{#tmpFields}{ingredients}{/tmpFields}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="directions"></label>
+              <textarea class="form-control" id="directions" name="directions" rows="3">{#tmpFields}{directions}{/tmpFields}</textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary btnSubmit" value="Save">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {/body}
