@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if(!btns) return;
     btns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        const id = e.currentTarget.getAttribute('data-id');
+        const item = e.currentTarget;
+        const id = item.getAttribute('data-id');
         const op = action.op;
         const method = action.method;
         const url = action.url ? action.url+id : null;
@@ -49,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
           sendRequest(url, method);
           break;
         case 'edit':
-          document.getElementById('editId').value = e.currentTarget.getAttribute('data-id');
-          document.getElementById('editTitle').value = e.currentTarget.getAttribute('data-title');
-          document.getElementById('editIngredients').value = e.currentTarget.getAttribute('data-ingredients');
-          document.getElementById('editDirections').value = e.currentTarget.getAttribute('data-directions');
+          document.getElementById('editId').value = item.getAttribute('data-id');
+          document.getElementById('editTitle').value = item.getAttribute('data-title');
+          document.getElementById('editIngredients').value = item.getAttribute('data-ingredients');
+          document.getElementById('editDirections').value = item.getAttribute('data-directions');
         }
       });
     });
