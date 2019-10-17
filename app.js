@@ -17,7 +17,7 @@ const srvPort = process.env.SRV_PORT;
 // Assign Dust engine to .dust files.
 app.engine('dust', cons.dust);
 
-// Set default Ext .dust
+// Set dust as default View engine
 app.set('view engine', 'dust');
 app.set('views', __dirname + '/views');
 
