@@ -16,6 +16,8 @@
   <!-- </div> -->
 {/toast}
 {<body}
+
+<!--  Errors Alert -->
   {#errors}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       {error}
@@ -24,11 +26,13 @@
       </button>
     </div>
   {/errors}
-  <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#formModal">Add Recipe</button>
+  <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#addFormModal">Add Recipe</button>
+  
+  <!-- Recipes Blocks -->
   {#recipes}
     <div class="card mb-2">
       <div class="card-body">
-        <h5 class="card-title">{name}          
+        <h5 id="title_{id}" class="card-title">{title}
           <button 
             class="btn float-right"
             type="button"
@@ -40,19 +44,28 @@
           </button>
         </h5>
         <div class="collapse card-text" id="recipe_{id}">
-          <div class="mt-5"><strong>Ingredients: </strong>{ingredients}</div>
-          <div class="mt-3"><strong>Directions: </strong>{directions}</div>
+          <div class="mt-5"><strong>Ingredients: </strong><span id="ingredients_{id}">{ingredients}</span></div>
+          <div class="mt-3"><strong>Directions: </strong><span id="directions_{id}">{directions}</span></div>
           <hr>
           <div class="float-right">
-            <button class="btn btn-success edit-recipe" data-id="{id}"><i class="material-icons">edit</i></button>
+            <button class="btn btn-success edit-recipe"
+              data-id="{id}"
+              data-toggle="modal"
+              data-target="#editFormModal"
+              data-title="{title}"
+              data-ingredients="{ingredients}"
+              data-directions="{directions}">
+              <i class="material-icons">edit</i></button>
             <button class="btn btn-danger delete-recipe ml-3" data-id="{id}"><i class="material-icons">delete</i></button>
           </div>
         </div>
       </div>
     </div>
   {/recipes}
+
+  <!-- MODALS -->
   <!-- Add Recipe Form Modal -->
-  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel"
+  <div class="modal fade" id="addFormModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -75,6 +88,42 @@
             <div class="form-group">
               <label for="directions"></label>
               <textarea class="form-control" id="directions" name="directions" rows="3">{#tmpFields}{directions}{/tmpFields}</textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary btnSubmit" value="Save">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Recipe Form Modal -->
+  <div class="modal fade" id="editFormModal" tabindex="-1" role="dialog" aria-labelledby="editRecipeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="/edit" method="POST">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editRecipeModalLabel">Update Recipe</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" class="form-control" id="editId" name="id">
+            <div class="form-group">
+              <label for="title"></label>
+              <input type="text" class="form-control" id="editTitle" name="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="ingredients"></label>
+              <textarea class="form-control" id="editIngredients" name="ingredients" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="directions"></label>
+              <textarea class="form-control" id="editDirections" name="directions" rows="3"></textarea>
             </div>
           </div>
           <div class="modal-footer">
