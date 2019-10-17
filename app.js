@@ -2,9 +2,9 @@ const express = require('express'),
   { Client } = require('pg'),
   env = require('dotenv').config(),
   path = require('path'),
-  cons = require('consolidate'),
+  cons = require('consolidate');
   // eslint-disable-next-line no-unused-vars
-  dust = require('dustjs-helpers');
+const dust = require('dustjs-linkedin');
   
 const app = express();
 let message = '';
